@@ -120,3 +120,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Media files
+
+# URL que maneja los medios servidos desde MEDIA_ROOT, 
+# utilizados para administrar archivos almacenados 
+# Debe terminar en una barra inclinada si se establece 
+# en un valor no vacío. Deberá configurar estos archivos 
+# para que se sirvan en entornos de desarrollo y producción.
+MEDIA_URL = '/media/'
+# Ruta absoluta del sistema de archivos al directorio 
+# que contendrá los archivos cargados por el usuario 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

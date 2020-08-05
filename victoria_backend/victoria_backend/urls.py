@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import UserAPI, AnswerQuestionAPI
+from django.conf import settings
+
+from core.views import UserAPI, AnswerQuestionAPI, PaperAPI, AnswerTextAPI, ParameterAPI, QuestionAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/1.0/user/', UserAPI.as_view(), name = "api_create_user"),
-    path('api/1.0/question/', AnswerQuestionAPI.as_view(), name = "api_create_question"),
+    path('api/1.0/question/', AnswerQuestionAPI.as_view(), name = "api_create_answer_question"),
+    path('api/1.0/paper/', PaperAPI.as_view(), name = "api_create_paper"),
+    path('api/1.0/paper?processed/', PaperAPI.as_view(), name = "api_get_list_paper"),
+    path('api/1.0/answer/', AnswerTextAPI.as_view(), name = "api_create_answer"),
+    path('api/1.0/parameter/', QuestionAPI.as_view(), name = "api_create_question"),
 ]
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
